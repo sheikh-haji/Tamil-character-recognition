@@ -203,6 +203,10 @@ def homepage():
 def canvaspage():
     return render_template("canvas.html")
 
+@app.route('/word')
+def wordpage():
+    return render_template("word.html")
+
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
     if request.method == "POST":
@@ -226,7 +230,71 @@ def upload():
         prediction=model.predict(test_sample_image)
         predicted_class=np.argmax(prediction)
         print(predicted_class)
-        return render_template('predict.html', num=str(unicode_mapping_df.loc[predicted_class][1]))
+        return render_template('predict.html', num=str(unicode_mapping_df.loc[predicted_class][1]),num1="Character")
+    else:
+        return redirect("/")
+
+@app.route('/predict2', methods=['GET', 'POST'])
+def predictword():
+    if request.method == "POST":
+        f = request.files["image"]
+        print(f)
+        ans=""
+        filepath = secure_filename(f.filename)
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], filepath))
+
+        upload_img = os.path.join(UPLOAD_FOLDER, filepath)
+        img=cv2.imread(upload_img)
+        gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        # thresh=cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY_INV,21,20)
+        ret,thresh=cv2.threshold(gray,150,255,cv2.THRESH_BINARY_INV)
+        plt.imshow(thresh)
+        cnts, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        #print(cnts)
+        cnt_t = []
+        # removing repeated contours for same symbol
+        for i, cnt in enumerate(cnts):
+            if hierarchy[0][i][3] == -1:
+                cnt_t.append(cnt)
+        cnts = sorted(cnt_t, key=lambda b: b[0][0][0], reverse=False)
+        plt.imshow(cv2.drawContours(thresh, cnts, -1, (0,255,0), 3),cmap='gray',vmin=0)
+
+
+        # Extracting each symbol to predict
+        for cnt in cnts:
+            
+            x, y, w, h = cv2.boundingRect(cnt)
+            img_temp = thresh[y:y + h, x:x + w]
+            top_bottom_padding = int((max(w, h) * 1.2 - h) / 2)
+            left_right_padding = int((max(w, h) * 1.2 - w) / 2)
+            img_temp = cv2.copyMakeBorder(img_temp, top_bottom_padding, top_bottom_padding, left_right_padding,
+                                            left_right_padding,cv2.BORDER_CONSTANT,value=0)
+            
+            if(cv2.contourArea(cnt)<200):
+                continue
+            img_temp = cv2.resize(img_temp, (64, 64))
+            #img_temp=thinning(img_temp)
+            img_temp=255-img_temp
+            img_temp=cv2.adaptiveThreshold(img_temp,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,21,10)
+            fig=plt.figure()
+            img_temp=np.asarray(img_temp) 
+            non_zeros=img_temp.size-np.count_nonzero(img_temp)
+            if(non_zeros==0):
+                continue
+            
+            plt.imshow(img_temp,cmap='gray')
+            img_temp=(np.expand_dims (img_temp, 0))
+        #     img_temp = np.array(img_temp, dtype="float") / 255.0
+            #print(prediction)
+            
+            prediction=model.predict(img_temp)
+            predicted_class=np.argmax(prediction)
+            ans+=(unicode_mapping_df.loc[predicted_class][1])
+            print(ans)
+            # prediction_score=max(prediction[0])
+            # predicted_class=np.argmax(prediction)
+       
+        return render_template('predict.html', num=ans,num1="Word")
     else:
         return redirect("/")
 
@@ -258,7 +326,7 @@ def something():
         prediction=model.predict(test_sample_image)
         predicted_class=np.argmax(prediction)
         print(predicted_class)          
-        return render_template('predict.html', num=str(unicode_mapping_df.loc[predicted_class][1]))
+        return render_template('predict.html', num=str(unicode_mapping_df.loc[predicted_class][1]),num1="Character")
     else:
         return redirect("/")
 
