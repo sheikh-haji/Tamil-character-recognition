@@ -1,0 +1,273 @@
+
+  #confidence{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 7.5%;
+  }
+
+  canvas {
+      width: 250px;
+      height: 250px;
+      border: 1px solid white;
+      border-radius: 15px;
+      margin: auto;
+      margin-bottom: 5px;
+      display: block;
+      background-color: black;
+  }
+
+
+
+  #predict_button{
+    margin-right: 15px;
+    color: rgb(0, 255, 72);
+    font-weight: bold;
+  }
+
+  #prediction_heading{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 7.5%;
+  }
+
+  #result{
+    font-size: 5rem;
+  }
+
+  #title{
+    padding: 1% 5%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .btn {
+      font-size: 15px;
+      padding: 10px;
+      /* -webkit-appearance: none; */
+      background: #eee;
+      border: 1px solid #888;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .buttons_div{
+    margin-bottom: 30px;
+    margin-right: 80px;
+  }
+
+  .heading{
+    font-family:"American Typewriter", serif;
+    font-weight: 700;
+    font-size: 2rem;
+    display: inline;
+  }
+
+  .centerside{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2%;
+    /* padding-left: 10%; */
+  }
+
+  #frame{
+    margin-right: 10%;
+  }
+
+  .predicted_answer{
+    text-align: center;
+    margin: 0 auto;
+    padding: 3% 5%;
+    padding-top: 0;
+    /* padding-left: 10%; */
+  }
+
+
+
+  @media (min-width: 720px) {
+    .centerside{
+      padding-left: 10%;
+    }
+  }
+  #title{
+  /* background-color: #6aa84f; */
+    /* background-color: #ff4c68; */
+    background-color: #2b78e4;
+    color:#ffffff;
+
+}
+@media only screen and (min-width: 120px) and (max-width: 991px) {
+    .my_container{
+
+      padding-bottom: 400px !important; //example
+
+    }
+}
+#footer{
+  position: absolute;
+    background-color: #6aa84f;
+    color:black;
+    font-family: Pacifico;
+    text-align: center;
+    padding: 0% 15%;
+    /* margin: 15% 0%; */
+    /* height: 200px; */
+    /* height: 10%; */
+    width: 100%;
+}
+
+h1{
+  font-family: "Pacifico";
+  font-size:2.5rem;
+  font-weight:800;
+  line-height: 1;
+
+}
+/* navbar */
+.navbar-brand{
+  font-family:"Pacifico" ;
+  font-size: 2.5rem ;
+
+}
+
+.navbar{
+  /* padding-bottom: 0.5rem; */
+}
+
+
+.nav-item{
+  font-family:"Source Sans Pro";
+  font-size: 1.2rem;
+  padding:0 5px;
+
+}
+.container-fluid{
+  padding: 3% 15%;
+}
+.title-image{
+  width:70%;
+  height:100%;
+}
+.temp{
+  font-family: "Source Sans Pro";
+  font-size: 1.2rem;
+  font-weight: lighter;
+}
+.temp2{
+  font-family: "Pacifico";
+  font-size: 1.0rem;
+  text-align: right;
+  margin-right: 1rem;
+}
+.temp3{
+  font-family: "Pacifico";
+  font-size: 1.4rem;
+  text-align: right;
+  margin-right: 1rem;
+}
+.temp4{
+  font-family: "Pacifico";
+  font-size: 1.4rem;
+  color: white;
+  padding-left: 30%;
+  padding-top: 5%;
+
+}
+#skills{
+  padding: 3% 3%;
+}
+
+.temp5{
+  font-family: "Pacifico";
+  font-size: 2rem;
+  font-weight: 800;
+  color: black;
+
+
+
+}
+.temp6{
+  font-family: "Pacifico";
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: white;
+  padding: 0% 5%;
+
+}
+.carousel-inner{
+/* margin:inherit; */
+/* padding: inherit; */
+padding-left:33%;
+margin-top:5%;
+/* margin-bottom: 20%; */
+
+}
+.center{
+  border-radius: 100%;
+  width:50%;
+  text-align: center;
+
+}
+#logo{
+  text-align: center;
+  background-color: #6aa84f;
+
+}
+.logo-image{
+  width:30%;
+  height:7%;
+margin:0% 2%;
+}
+/* certificate */
+/* build your own custom Bootstrap theme:
+   https://themestr.app
+*/
+.temp8{
+    padding:4%;
+    text-align:center;
+
+}
+#certificate{
+    text-align:center;
+}
+.temp7{
+  font-family: "Pacifico";
+  font-size:2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom:3%;
+  text-align:center;
+}
+.portfolio-item{
+    margin-bottom:30px;
+    text-align:center;
+}
+p{
+  font-family:"Source Sans Pro";
+}
+a{
+  color:black;
+    font-family:"Pacifico";
+    text-decoration: none;
+}
+.temp9{
+  font-family: "Pacifico";
+  font-size:2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom:3%;
+  text-decoration:underline;
+  text-align:center;
+}
+
+.temp8{
+    padding:4%;
+
+   text-align: left;
+}
+#project{
+    background-color:#6aa84f;
+}
+.temp10{
+    font-family:"Pacifico";
+    color: white;
+    font-size: 2rem;
+}
